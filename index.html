@@ -1,0 +1,138 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Physics Equation Master</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      color: #00ffd5;
+    }
+    select, input[type="text"] {
+      padding: 10px;
+      margin: 10px;
+      width: 60%;
+      max-width: 400px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1.1em;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 10px;
+      background-color: #00ffd5;
+      color: #000;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    button:hover {
+      background-color: #00c9b7;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1.5em;
+      color: #ffdd57;
+    }
+    footer {
+      margin-top: 50px;
+      font-size: 0.9em;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <h1>✨ Physics Equation Master ✨</h1><label for="topic">Choose a topic:</label><br /> <select id="topic" onchange="updateQuantities()"> <option value="motion">Motion</option> <option value="wpe">Work, Power & Energy</option> <option value="gravitation">Gravitation</option> <option value="electricity">Electricity</option> <option value="laws">Laws of Motion</option> <option value="thermo">Thermodynamics</option> </select> <br />
+
+<label for="find">Choose a quantity:</label><br /> <select id="find"></select> <br /> <button onclick="showEquation()">Show Equation</button>
+
+  <div class="result" id="result"></div>  <footer>
+    Created with passion by Abhi ❤️ | Never stop learning
+  </footer>  <script>
+    const quantityOptions = {
+      motion: ["acceleration", "velocity", "distance", "displacement"],
+      wpe: ["power", "kinetic energy", "potential energy", "work", "workdone"],
+      gravitation: ["gravitational force", "acceleration due to gravity", "weight", "gravitational potential energy"],
+      electricity: ["ohm's law", "resistance", "current", "potential difference", "electric power", "electric energy"],
+      laws: ["force", "momentum", "impulse"],
+      thermo: ["heat", "specific heat", "thermal expansion"]
+    };
+
+    function updateQuantities() {
+      const topic = document.getElementById("topic").value;
+      const findSelect = document.getElementById("find");
+      findSelect.innerHTML = "";
+      quantityOptions[topic].forEach(q => {
+        const option = document.createElement("option");
+        option.value = q;
+        option.textContent = q;
+        findSelect.appendChild(option);
+      });
+    }
+
+    function showEquation() {
+      const topic = document.getElementById("topic").value;
+      const find = document.getElementById("find").value.toLowerCase().trim();
+      let equation = "";
+
+      if (topic === "motion") {
+        if (find === "acceleration") equation = "a = (v - u) / t";
+        else if (find === "velocity") equation = "v = u + a*t";
+        else if (find === "distance" || find === "displacement") equation = "s = ut + 1/2 * a * t²";
+        else equation = "❌ Equation not found in Motion topic.";
+
+      } else if (topic === "wpe") {
+        if (find === "power") equation = "P = W / t";
+        else if (find === "kinetic energy") equation = "KE = 1/2 * m * v²";
+        else if (find === "potential energy") equation = "PE = m * g * h";
+        else if (find === "work" || find === "workdone") equation = "Work = Force * displacement";
+        else equation = "❌ Equation not found in Work & Energy topic.";
+
+      } else if (topic === "gravitation") {
+        if (find === "gravitational force") equation = "F = G * (m1 * m2) / r²";
+        else if (find === "acceleration due to gravity") equation = "g = G * M / R²";
+        else if (find === "weight") equation = "W = m * g";
+        else if (find === "gravitational potential energy") equation = "U = -G * (m1 * m2) / r";
+        else equation = "❌ Equation not found in Gravitation topic.";
+
+      } else if (topic === "electricity") {
+        if (find === "ohm's law") equation = "V = I * R";
+        else if (find === "resistance") equation = "R = V / I";
+        else if (find === "current") equation = "I = Q / t";
+        else if (find === "potential difference") equation = "V = W / Q";
+        else if (find === "electric power") equation = "P = V * I";
+        else if (find === "electric energy") equation = "E = P * t";
+        else equation = "❌ Equation not found in Electricity topic.";
+
+      } else if (topic === "laws") {
+        if (find === "force") equation = "F = m * a";
+        else if (find === "momentum") equation = "p = m * v";
+        else if (find === "impulse") equation = "Impulse = F * Δt";
+        else equation = "❌ Equation not found in Laws of Motion topic.";
+
+      } else if (topic === "thermo") {
+        if (find === "heat") equation = "Q = m * c * ΔT";
+        else if (find === "specific heat") equation = "c = Q / (m * ΔT)";
+        else if (find === "thermal expansion") equation = "ΔL = α * L₀ * ΔT";
+        else equation = "❌ Equation not found in Thermodynamics topic.";
+
+      } else {
+        equation = "❌ Sorry, topic not available yet.";
+      }
+
+      document.getElementById("result").innerText = "🎯 Equation: " + equation;
+    }
+
+    // Initialize quantities on page load
+    window.onload = updateQuantities;
+  </script></body>
+</html>
