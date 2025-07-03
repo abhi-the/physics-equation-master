@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -54,8 +54,16 @@
     }
     .result {
       margin-top: 20px;
-      font-size: 1.5em;
+      font-size: 1.3em;
       color: #ffdd57;
+      white-space: pre-line;
+      text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 15px;
+      border-radius: 10px;
     }
     footer {
       margin-top: 50px;
@@ -68,7 +76,7 @@
   <h1>✨ Physics Equation Master by Abhi ✨</h1>
 
   <p style="max-width: 600px; margin: auto; font-size: 1.1em; padding: 10px;">
-    Welcome to Physics Equation Master — a powerful tool to explore all the essential physics equations in topics like motion, electricity, thermodynamics, gravitation and more. Designed by Abhi to help students and teachers learn quickly and effectively!
+    Welcome to Physics Equation Master -- a powerful tool to explore all the essential physics equations in topics like motion, electricity, thermodynamics, gravitation and more. Designed by Abhi to help students and teachers learn quickly and effectively!
   </p>
 
   <label for="topic">Choose a topic:</label><br />
@@ -79,6 +87,7 @@
     <option value="electricity">Electricity</option>
     <option value="laws">Laws of Motion</option>
     <option value="thermo">Thermodynamics</option>
+    <option value="constants">Constants</option>
   </select><br />
 
   <label for="find">Choose a quantity:</label><br />
@@ -97,9 +106,10 @@
       motion: ["acceleration", "velocity", "distance", "displacement"],
       wpe: ["power", "kinetic energy", "potential energy", "work", "workdone"],
       gravitation: ["gravitational force", "acceleration due to gravity", "weight", "gravitational potential energy"],
-      electricity: ["ohm's law", "resistance", "current", "potential difference", "electric power", "electric energy"],
+      electricity: ["ohm's law", "resistance", "resistivity", "current", "charge", "potential difference", "electric power", "electric energy", "series combination", "parallel combination"],
       laws: ["force", "momentum", "impulse"],
-      thermo: ["heat", "specific heat", "thermal expansion"]
+      thermo: ["heat", "specific heat", "thermal expansion", "pressure", "area", "volume"],
+      constants: ["physics constants"]
     };
 
     function updateQuantities() {
@@ -142,10 +152,14 @@
       } else if (topic === "electricity") {
         if (find === "ohm's law") equation = "V = I * R";
         else if (find === "resistance") equation = "R = V / I";
+        else if (find === "resistivity") equation = "R = ρ * (L / A)";
         else if (find === "current") equation = "I = Q / t";
+        else if (find === "charge") equation = "Q = I * t";
         else if (find === "potential difference") equation = "V = W / Q";
         else if (find === "electric power") equation = "P = V * I";
-        else if (find === "electric energy") equation = "E = P * t";
+        else if (find === "electric energy") equation = "E = V * I * t";
+        else if (find === "series combination") equation = "R_total = R1 + R2 + R3 + ...";
+        else if (find === "parallel combination") equation = "1/R_total = 1/R1 + 1/R2 + 1/R3 + ...";
         else equation = "❌ Equation not found in Electricity topic.";
 
       } else if (topic === "laws") {
@@ -158,16 +172,38 @@
         if (find === "heat") equation = "Q = m * c * ΔT";
         else if (find === "specific heat") equation = "c = Q / (m * ΔT)";
         else if (find === "thermal expansion") equation = "ΔL = α * L₀ * ΔT";
+        else if (find === "pressure") equation = "P = F / A";
+        else if (find === "area") equation = "A = l * b";
+        else if (find === "volume") equation = "V = l * b * h";
         else equation = "❌ Equation not found in Thermodynamics topic.";
 
+      } else if (topic === "constants") {
+        equation = `
+🔹 G = 6.674 × 10⁻¹¹ N·m²/kg²
+🔹 c = 3 × 10⁸ m/s
+🔹 h = 6.626 × 10⁻³⁴ J·s
+🔹 e = 1.602 × 10⁻¹⁹ C
+🔹 Nₐ = 6.022 × 10²³ mol⁻¹
+🔹 k = 1.38 × 10⁻²³ J/K
+🔹 e⁻ = -1.602 × 10⁻¹⁹ C
+🔹 mₑ = 9.109 × 10⁻³¹ kg
+🔹 p⁺ = +1.602 × 10⁻¹⁹ C
+🔹 mₚ = 1.673 × 10⁻²⁷ kg
+🔹 mₙ = 1.675 × 10⁻²⁷ kg
+🔹 ε₀ = 8.854 × 10⁻¹² F/m
+🔹 μ₀ = 4π × 10⁻⁷ N/A²
+🔹 R = 8.314 J/mol·K
+🔹 σ = 5.67 × 10⁻⁸ W/m²·K⁴
+🔹 g = 9.8 m/s²
+        `;
       } else {
         equation = "❌ Sorry, topic not available yet.";
       }
 
-      document.getElementById("result").innerText = "🎯 Equation: " + equation;
+      document.getElementById("result").innerText = "🎯 " + (topic === "constants" ? "Physics Constants:\n" + equation : "Equation: " + equation);
     }
 
-    // Initialize quantities on page load
+    // Initialize on page load
     window.onload = updateQuantities;
   </script>
 </body>
