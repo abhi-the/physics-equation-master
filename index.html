@@ -1,8 +1,22 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Physics Equation Master</title>
+  <title>Physics Equation Master by Abhi</title>
+  <meta name="description" content="Physics Equation Master is a free online tool created by Abhi to help students and teachers find all important physics formulas and equations easily.">
+  <meta name="keywords" content="Physics Equation Master, Abhi, physics formulas, motion, electricity, thermodynamics, equations, science study tool, student helper">
+  <meta name="author" content="Abhi">
+
+  <!-- ✅ Google Analytics Tracking -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3XL475E5PX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3XL475E5PX');
+  </script>
+
   <style>
     body {
       background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
@@ -51,13 +65,34 @@
   </style>
 </head>
 <body>
-  <h1>✨ Physics Equation Master ✨</h1><label for="topic">Choose a topic:</label><br /> <select id="topic" onchange="updateQuantities()"> <option value="motion">Motion</option> <option value="wpe">Work, Power & Energy</option> <option value="gravitation">Gravitation</option> <option value="electricity">Electricity</option> <option value="laws">Laws of Motion</option> <option value="thermo">Thermodynamics</option> </select> <br />
+  <h1>✨ Physics Equation Master by Abhi ✨</h1>
 
-<label for="find">Choose a quantity:</label><br /> <select id="find"></select> <br /> <button onclick="showEquation()">Show Equation</button>
+  <p style="max-width: 600px; margin: auto; font-size: 1.1em; padding: 10px;">
+    Welcome to Physics Equation Master — a powerful tool to explore all the essential physics equations in topics like motion, electricity, thermodynamics, gravitation and more. Designed by Abhi to help students and teachers learn quickly and effectively!
+  </p>
 
-  <div class="result" id="result"></div>  <footer>
+  <label for="topic">Choose a topic:</label><br />
+  <select id="topic" onchange="updateQuantities()">
+    <option value="motion">Motion</option>
+    <option value="wpe">Work, Power & Energy</option>
+    <option value="gravitation">Gravitation</option>
+    <option value="electricity">Electricity</option>
+    <option value="laws">Laws of Motion</option>
+    <option value="thermo">Thermodynamics</option>
+  </select><br />
+
+  <label for="find">Choose a quantity:</label><br />
+  <select id="find"></select><br />
+
+  <button onclick="showEquation()">Show Equation</button>
+
+  <div class="result" id="result"></div>
+
+  <footer>
     Created with passion by Abhi ❤️ | Never stop learning
-  </footer>  <script>
+  </footer>
+
+  <script>
     const quantityOptions = {
       motion: ["acceleration", "velocity", "distance", "displacement"],
       wpe: ["power", "kinetic energy", "potential energy", "work", "workdone"],
@@ -134,5 +169,6 @@
 
     // Initialize quantities on page load
     window.onload = updateQuantities;
-  </script></body>
+  </script>
+</body>
 </html>
